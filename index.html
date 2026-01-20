@@ -1,65 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Me</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            line-height: 1.6;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .main-info {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-        }
-        .main-info h1 {
-            margin: 0;
-        }
-        .hobbies, .lewis, .course, .job {
-            background: #e7e7e7;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Me</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      line-height:1.6;
+      margin:0;
+      color:#eee;           /* light text for dark background */
+      background:#05010d;   /* fallback color if video fails */
+    }
+
+    /* Video background */
+    .bg-video{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Optional: dark overlay to keep text readable (recommended) */
+    .bg-overlay{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 1, 13, 0.55);
+      z-index: -1;
+    }
+
+    .container{
+      width:90%;
+      max-width:900px;
+      margin:24px auto;
+    }
+
+    /* Shared “panel” styling to match the purple video */
+    .panel{
+      background: rgba(20, 10, 50, 0.78);     /* dark translucent purple */
+      border: 1px solid rgba(255,255,255,0.14);
+      padding:15px;
+      margin-top:12px;
+    }
+
+    /* Header */
+    .main-info{
+      /* still a panel, just slightly stronger */
+      background: rgba(15, 6, 40, 0.88);
+      border: 1px solid rgba(255,255,255,0.18);
+
+      color:#fff;
+      padding:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+    }
+
+    .name-block h1{
+      margin:0;
+    }
+
+    .name-block h1:first-child{
+      font-size:48px;
+    }
+
+    .name-block h1 + h1{
+      margin-top:8px;
+      font-size:22px;
+      font-weight:normal;
+      opacity:0.92;
+    }
+
+    /* Profile image */
+    .profile-pic{
+      width:160px;
+      height:160px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.85);
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      text-align:center;
+      overflow:hidden;
+      color:#fff;
+    }
+
+    .profile-pic img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Sections */
+    .intro, .job, .hobbies-funfact, .last-updated{
+      /* inherit the matched panel look */
+    }
+
+    h2{
+      margin-top:0;
+      color:#fff;
+    }
+
+    p, li{
+      color:#e9e9e9;
+    }
+
+    ul{
+      margin: 8px 0 0 18px;
+    }
+
+    /* Mobile: stack layout */
+    @media (max-width: 600px){
+      .main-info{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .profile-pic{
+        width:150px;
+        height:150px;
+      }
+
+      .name-block h1:first-child{
+        font-size:38px;
+      }
+
+      .name-block h1 + h1{
+        font-size:18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header class="main-info">
-            <h1>[Your First and Last Name]</h1>
-            <h1>Preferred Name: [Your Preferred Name]</h1>
-        </header>
+  <!-- Background video -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
 
-        <section class="lewis">
-			<h2>Year at Lewis: [Your Years at Lewis]</h2>
-			<h2>Lewis major/minor/concentrations: [Your major/minor/concentrations]</h2>
-			<h2>Reasons for pursuing this degree: [Your reasons for pursuing the degree]</h2>
-        </section>
+  <div class="container">
+    <header class="main-info">
+      <div class="name-block">
+        <h1>John Keslin</h1>
+        <h1>Preferred Name: John</h1>
+      </div>
 
-		<section class="course">
-            <h2>Reasons for Taking This Course</h2>
-            <p>[Your reasons for taking this course]</p>
-        </section>
+      <div class="profile-pic">
+        <img src="profile.png" alt="Profile photo"
+             onerror="this.remove(); this.parentElement.textContent='Sup';">
+      </div>
+    </header>
 
-		<section class="job">
-            <p>Current/Recent Job</p>
-			<p>[Your job responsibilities]</p>
-        </section>		
+    <section class="intro panel">
+      <h2>Introduction</h2>
+      <p>
+        What's up, y'all. I’m John, an aviation administration major from Naperville with a concentration in aircraft dispatch. I've loved flying ever since I started playing sim games like XPlane and MSFS, hence why I went for a degree in this field. Unfortunately, since Lewis's flight program was full, I had to settle for admin instead. I plan to get my license outside of Lewis and eventually build up to being a cargo pilot.
+        
+      </p>
+    </section>
 
-        <section class="hobbies">
-            <h2>Hobbies and Special Interests</h2>
-            <p>[Your hobbies or special interests]</p>
-        </section>
+    <section class="job panel">
+      <h2>Current Job</h2>
+      <p>I work as an associate at Funtopia, a rock climbing place for kids.</p>
+    </section>
 
-        <section class="fun-fact">
-            <h2>Fun Fact</h2>
-            <p>[A fun fact about yourself]</p>
-        </section>
+    <section class="hobbies-funfact panel">
+      <h2>Hobbies, Special Interests, and a Fun Fact</h2>
+
+      <p><strong>Hobbies / interests:</strong></p>
+      <ul>
+        <li>Video games/sim games</li>
+        <li>Nerf guns/nerf modding</li>
+        <li>Nintendo homebrew (Wii/3DS/DSi/WiiU)</li>
+      </ul>
+
+      <p style="margin-top:12px;">
+        <strong>Fun fact:</strong> I probably have more playtime on Roblox then any other game I've played.
+      </p>
+    </section>
+
+    <div class="last-updated panel">
+      Last Updated on 01/19/2026
     </div>
+  </div>
 </body>
 </html>
